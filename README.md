@@ -64,6 +64,22 @@
    ## unref
    - 如果参数是一个 ref, 则返回内部值(数据.value), 否则返回参数本身。是`val = isRef(val) ? val.value : val`的语法糖函数。
 
-   ## toRef
-   - `toRef(reactive对象, reactive对象的某个属性)`,toRef可以用来为源响应式对象上的某个 property 新创建一个 ref。然后，ref 可以被传递，它会保持对其源 property 的响应式连接。
 
+   ## toRef
+   - `toRef(reactive对象, reactive对象的某个属性)`,toRef可以用来为源reactive对象上的某个属性新创建一个ref。然后，ref可以被传递，它会保持对其源属性的响应式连接。
+
+   ## toRefs
+   -  `toRefs(reactive对象)`, 将reactive对象转换为普通对象，其中结果对象的每个属性都是指向原始对象相应属性的ref。
+   > toRefs会为源reactive对象中的所有属性变成ref。如果要为特定的属性创建ref，则应当使用toRef
+   
+   ## customRef
+   - 创建一个自定义的 ref，并对其依赖项跟踪和更新触发进行显式控制。它需要一个工厂函数，该函数接收 track 和 trigger 函数作为参数，并且应该返回一个带有 get 和 set 的对象。可以实现一个防抖函数
+
+   ## shallowRef
+   -  创建一个跟踪自身 .value 变化的 ref，但不会使其值也变成响应式的。`const info= ref( { name: '张三'} ); info.value =  name: '李四' }; info.value => Proxy {name: '李四'}`; `const info= shallowRef( { name: '张三'} ); info.value =  name: '李四' }; info.value => {name: '李四'}`
+
+   ## triggerRef
+   - 手动执行与 shallowRef 关联的任何作用 (effect)。
+
+  ## isReactive
+  - 检查对象是否是由 reactive 创建的响应式代理。

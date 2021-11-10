@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <!-- <Setup :title='title' :count="count" @add='add' /> -->
-    <ToRef />
+    <ShallowRef />
 
   </div>
 </template>
@@ -13,7 +13,8 @@ import Reactive from './components/CompositionApi/reactive.vue'
 import Ref from './components/CompositionApi/ref.vue'
 import Unref from './components/CompositionApi/unref.vue'
 import ToRef from './components/CompositionApi/toRef.vue'
-
+import CustomRef from './components/CompositionApi/customRef.vue'
+import ShallowRef from './components/CompositionApi/shallowRef.vue'
 
 
 
@@ -26,7 +27,9 @@ export default {
     Reactive,
     Ref,
     Unref,
-    ToRef
+    ToRef,
+    CustomRef,
+    ShallowRef
   },
 
   setup() {
