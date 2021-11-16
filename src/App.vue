@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <!-- <Setup :title='title' :count="count" @add='add' /> -->
-    <ShallowRef />
+    <Watch />
 
   </div>
 </template>
@@ -15,6 +15,10 @@ import Unref from './components/CompositionApi/unref.vue'
 import ToRef from './components/CompositionApi/toRef.vue'
 import CustomRef from './components/CompositionApi/customRef.vue'
 import ShallowRef from './components/CompositionApi/shallowRef.vue'
+import Computed from './components/CompositionApi/computed.vue'
+import Readonly from './components/CompositionApi/readonly.vue'
+import WatchEffect from './components/CompositionApi/watchEffect.vue'
+import Watch from './components/CompositionApi/watch.vue'
 
 
 
@@ -29,7 +33,11 @@ export default {
     Unref,
     ToRef,
     CustomRef,
-    ShallowRef
+    ShallowRef,
+    Computed,
+    Readonly,
+    WatchEffect,
+    Watch
   },
 
   setup() {
