@@ -101,3 +101,25 @@
   ## watch
   -  默认情况下，它也是惰性的，即只有当被侦听的源发生变化时才执行回调, 第一个参数返回要观测的值，第二个参数是观测到变化的回调
   - 观测多个值，第一个参数可以传数组
+
+  ## isProxy
+  -  检查对象是否是由reactive 或 readonly 创建的proxy
+
+  ## isReactive
+  -  检查对象是否是由reactive创建的响应式代理, 如果该代理是 readonly 创建的，但包裹了由 reactive 创建的另一个代理，它也会返回 true
+
+  ## isReadonly
+  -  检查对象是否是由reactive 或 readonly 创建的proxy
+
+  ## shallowReactive
+  -  创建一个响应式代理，它跟踪其自身 property 的响应性，但不执行嵌套对象的深层响应式转换
+
+  ## shallowReadonly
+  -  创建一个 proxy，使其自身的 property 为只读，但不执行嵌套对象的深度只读转换 (暴露原始值)。
+  
+  ## toRaw
+  -  把响应式对象转换成一个普通的对象
+
+  ## markRaw
+  -  标记一个对象，使其永远不会转换为 proxy。返回对象本身。
+  >  只是浅度的标记对象使其永远不会转换为proxy；可以让有些嵌套的对象避免响应式的包装

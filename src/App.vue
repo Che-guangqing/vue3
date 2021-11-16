@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <!-- <Setup :title='title' :count="count" @add='add' /> -->
-    <Watch />
+    <MarkRaw />
 
   </div>
 </template>
@@ -19,6 +19,12 @@ import Computed from './components/CompositionApi/computed.vue'
 import Readonly from './components/CompositionApi/readonly.vue'
 import WatchEffect from './components/CompositionApi/watchEffect.vue'
 import Watch from './components/CompositionApi/watch.vue'
+import IsProxy from './components/CompositionApi/isProxy.vue'
+import ShallowReactive from './components/CompositionApi/shallowReactive.vue'
+import ToRaw from './components/CompositionApi/toRaw.vue'
+import MarkRaw from './components/CompositionApi/markRaw.vue'
+
+
 
 
 
@@ -37,7 +43,11 @@ export default {
     Computed,
     Readonly,
     WatchEffect,
-    Watch
+    Watch,
+    IsProxy,
+    ShallowReactive,
+    ToRaw,
+    MarkRaw
   },
 
   setup() {
