@@ -16,7 +16,7 @@ export default {
     // // isProxy
     // const reactiveData = reactive({ a:1 })
     // const readonlyData = readonly({ b:2 })
-    // const refData = ref(0)
+    // const refData = ref(0) 
     // const obj = {c:3}
     // const originProxy = new Proxy({
     //   d: 4
@@ -45,6 +45,7 @@ export default {
     console.log(isProxy(plan), isReactive(plan), isReadonly(plan)); //true false true
     console.log(isProxy(stateReadonly), isReactive(stateReadonly), isReadonly(stateReadonly)); //true true true
 
+    
 
   }
 }

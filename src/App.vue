@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <!-- <Setup :title='title' :count="count" @add='add' /> -->
-    <MarkRaw />
+    <vue2Provide />
 
   </div>
 </template>
@@ -23,6 +23,10 @@ import IsProxy from './components/CompositionApi/isProxy.vue'
 import ShallowReactive from './components/CompositionApi/shallowReactive.vue'
 import ToRaw from './components/CompositionApi/toRaw.vue'
 import MarkRaw from './components/CompositionApi/markRaw.vue'
+import lifeCycle from './components/CompositionApi/lifeCycle.vue'
+
+import vue2Provide from './components/vue2OptionsApis/grandpa.vue'
+import vue3Provide from './components/CompositionApi/provide&inject/grandpa.vue'
 
 
 
@@ -47,7 +51,10 @@ export default {
     IsProxy,
     ShallowReactive,
     ToRaw,
-    MarkRaw
+    MarkRaw,
+    lifeCycle,
+    vue2Provide,
+    vue3Provide
   },
 
   setup() {
