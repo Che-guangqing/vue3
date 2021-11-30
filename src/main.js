@@ -1,12 +1,17 @@
 import { createApp } from 'vue'
-
 import App from './App.vue'
-createApp(App).mount('#app')
+
+const app = createApp(App)
+// app.use()
+app.mount('#app')
 
 console.log(createApp(App).config);
 
-// const vm= new Vue({
+
+// const vm = new Vue({
 //   data() {},
 //   methods: {},
 // })
+// vm.$mount('#app')
+// Vue.use()
 

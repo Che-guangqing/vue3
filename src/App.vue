@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <!-- <Setup :title='title' :count="count" @add='add' /> -->
-    <vue2Provide />
+    <!-- <vue2Provide /> -->
 
   </div>
 </template>
@@ -32,7 +32,8 @@ import vue3Provide from './components/CompositionApi/provide&inject/grandpa.vue'
 
 
 
-import { ref } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
+import Button from '../../element-plus-dev/docs/examples/config-provider/button.vue'
 
 export default {
   name:'APP',
@@ -54,7 +55,11 @@ export default {
     MarkRaw,
     lifeCycle,
     vue2Provide,
-    vue3Provide
+    vue3Provide,
+    Button
+  },
+  mounted() {
+    // console.log(this);
   },
 
   setup() {
@@ -70,6 +75,7 @@ export default {
       count.value += val
     }
 
+
     // Reactive
     
     return {
@@ -79,6 +85,7 @@ export default {
       add,
 
       // Reactive
+
     }
   },
 
