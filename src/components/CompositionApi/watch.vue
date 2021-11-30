@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p>姓名: {{name}}</p>
+    <!-- <p>姓名: {{name}}</p>
     <p>年龄: {{age}}</p>
 
-    <button @click="change">change</button>
+    <button @click="change">change</button> -->
   </div>
 </template>
 
@@ -36,25 +36,25 @@ export default {
     //   console.log(newValue, oldValue);
     // })
 
-    // 观测多个值
-    const name = ref('张三')
-    const age = ref(18)
+    // // 观测多个值
+    // const name = ref('张三')
+    // const age = ref(18)
 
-    const stop = watch([name, age], (newValue, oldValue, onInvalidate) => {
-      console.log(newValue, oldValue);
+    // const stop = watch([name, age], (newValue, oldValue, onInvalidate) => {
+    //   console.log(newValue, oldValue);
 
-      onInvalidate(() => {
-        console.log('onInvalidate is trigger');
-      })
-    }, {
-      flush: 'post',
-      onTrack(e) {
-        console.log(e, 'ontrack');
-      },
-      onTrigger(e) {
-        console.log(e, 'ontrigger');
-      }
-    })
+    //   onInvalidate(() => {
+    //     console.log('onInvalidate is trigger');
+    //   })
+    // }, {
+    //   flush: 'post',
+    //   onTrack(e) {
+    //     console.log(e, 'ontrack');
+    //   },
+    //   onTrigger(e) {
+    //     console.log(e, 'ontrigger');
+    //   }
+    // })
 
     // setTimeout(() => {
     //   name.value = '李四' //  ['李四', 19]  ['张三', 18]
@@ -65,26 +65,67 @@ export default {
     // }, 2000);
 
 
-    // 如果你在同一个函数里同时改变这些被侦听的来源，侦听器仍只会执行一次：
-    const change = () => {
-      name.value = '李四'
-      age.value ++ 
-      //  ['李四', 19] (2) ['张三', 18]
-    }
+    // // 如果你在同一个函数里同时改变这些被侦听的来源，侦听器仍只会执行一次：
+    // const change = () => {
+    //   name.value = '李四'
+    //   age.value ++ 
+    //   //  ['李四', 19] (2) ['张三', 18]
+    // }
 
-    setTimeout(() => {
-      stop()
-    }, 5000);
+    // setTimeout(() => {
+    //   stop()
+    // }, 5000);
 
-    onBeforeUpdate(() => {
-      console.log('onBeforeUpdate');
+    // onBeforeUpdate(() => {
+    //   console.log('onBeforeUpdate');
+    // })
+
+    // const obj = reactive({
+    //   name: 'cc',
+    //   age: 18,
+    //   job: {
+    //     j1: {
+    //       name: 'j1'
+    //     }
+    //   }
+    // })
+
+    // setTimeout(() => {
+    //   obj.name+='!'
+    // }, 2000);
+
+    // watch(() => JSON.parse(JSON.stringify(obj)), (newValue, oldValue)=> {
+    //   console.log(newValue, oldValue);
+    // }, {
+    //   deep: true
+    // })
+
+    let age = ref(0)
+    let person = ref({
+      name: 'cc',
+      job: {
+        j1: {
+          name: 'j1'
+        }
+      }
     })
 
+    setTimeout(() => {
+      person.value.name += '!'
+    }, 2000);
+
+    // watch(person.value ,(newValue, oldVlaue) => {
+    //   console.log(newValue, oldVlaue, 'age');
+    // })
+
+    // watch(person ,(newValue, oldVlaue) => {
+    //   console.log(newValue, oldVlaue, 'age');
+    // }, {deep: true})
 
     return {
-      name,
-      age,
-      change
+      // name,
+      // age,
+      // change
     }
 
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <!-- <Setup :title='title' :count="count" @add='add' /> -->
-    <!-- <vue2Provide /> -->
+    <WatchEffect />
 
   </div>
 </template>

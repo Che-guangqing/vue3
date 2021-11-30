@@ -58,7 +58,7 @@
      
 ### 2、与mixin对比 (可以聚合功能，但是一个聚合无法使用另一个聚合的东西, 数据来源不明确)
 
-### 3、reactive、 isReactive、 readonly、isProxy、isReadonly、shallowReactive、shallowReadonly、ref、isRef、unref、toRef、toRefs、 customRef、shallowRef、triggerRef、 computed、watchEffect、watch、toRaw、 markRaw
+### 3、reactive、 readonly、isReactive、isReadonly、 isProxy、shallowReactive、shallowReadonly、ref、isRef、unref、toRef、toRefs、 customRef、shallowRef、triggerRef、 computed、watchEffect、watch、toRaw、 markRaw
     （1）reactive和ref
     （2）响应式
     （3）api介绍
@@ -110,7 +110,7 @@
    - 创建一个自定义的 ref，并对其依赖项跟踪和更新触发进行显式控制。它需要一个工厂函数，该函数接收 track 和 trigger 函数作为参数，并且应该返回一个带有 get 和 set 的对象。可以实现一个防抖函数
 
    #### shallowRef
-   -  创建一个跟踪自身 .value 变化的 ref，但不会使其值也变成响应式的。`const info= ref( { name: '张三'} ); info.value =  name: '李四' }; info.value => Proxy {name: '李四'}`; `const info= shallowRef( { name: '张三'} ); info.value =  name: '李四' }; info.value => {name: '李四'}`
+   - 创建一个跟踪自身 .value 变化的 ref，但不会使其值也变成响应式的。`const info= ref( { name: '张三'} ); info.value =  name: '李四' }; info.value => Proxy {name: '李四'}`; `const info= shallowRef( { name: '张三'} ); info.value =  name: '李四' }; info.value => {name: '李四'}`
 
    #### triggerRef
    - 手动执行与 shallowRef 关联的任何作用 (effect)。
@@ -123,16 +123,25 @@
    #### watchEffect
   - 会进行依赖收集，凡是依赖的数据的变化都会检测到然后执行此函数，立即执行传入的一个函数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数
   - 此函数在组件被卸载的时候会自动停止监听，但是watchEffect可以返回一个函数，执行此函数就会停止监听，
+  - 和computed有点像
   - 未理解 清除副作用 和  副作用刷新时机 多查资料理解 💢 💢
 
    #### watch
-  -  默认情况下，它也是惰性的，即只有当被侦听的源发生变化时才执行回调, 第一个参数返回要观测的值，第二个参数是观测到变化的回调
+  - 默认情况下，它也是惰性的，即只有当被侦听的源发生变化时才执行回调, 第一个参数返回要观测的值，第二个参数是观测到变化的回调
+  - 多个同步更改只会触发一次侦听器。
   - 观测多个值，第一个参数可以传数组
+  - 监测ref数据, 第一个值直接写ref包裹的变量
+      - 如果ref包裹的是基本数据类型，第一个参数直接写变量名
+      - 如果ref包裹的是对象，第一个参数直接写变量名, 不会触发监听，因为你会发现，`数据.value`是一个Proxy，说明你监听的其实是reactive包裹的数据, 也就是说ref包裹对象，就是用reactive定义那个对象，再用ref包裹他，所以第一个参数写`数据.value`, 或者第三个参数开启深度监听就会触发，但是会存在监测reactive数据的问题， 如下
 
+  - 监测reactive数据：
+      - 监测整个数据，第一个参数如果传入要监测对象数据， 可以监听到但是无法获取到正确的oldvalue, 想解决这个问题，第一个参数可以返回数据的深拷贝， 强制开启了深度监听; 
+      - 监测数据的某一个或多个属性， 第一个参数用函数返回要监测的属性（一个函数，或数组中包含多个函数）、
+      - 监测数据的某一个属性，此属性是对象，监测不到，要配置第三个参数 {deep: false}
   
    #### toRaw
-  -  把响应式对象转换成一个普通的对象
-
+  -  把reactive创建的响应式对象转换成一个普通的对象
+  
    #### markRaw
   -  标记一个对象，使其永远不会转换为 proxy。返回对象本身。
   >  只是浅度的标记对象使其永远不会转换为proxy；可以让有些嵌套的对象避免响应式的包装
